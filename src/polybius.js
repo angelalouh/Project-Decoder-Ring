@@ -5,7 +5,6 @@
 
 const polybiusModule = (function () {
   function polybius(input, encode = true) {
-    // your solution code here
     const lowerCaseInput = input.toLowerCase();
     const inputArray = lowerCaseInput.split("");
     const inputArrayWithNoSpaces = inputArray.filter(char => char != " ");
