@@ -5,7 +5,10 @@
 
 const polybiusModule = (function () {
   function polybius(input, encode = true) {
+
+    // will ignore capital letters
     const lowerCaseInput = input.toLowerCase();
+    
     const inputArray = lowerCaseInput.split("");
     const inputArrayWithNoSpaces = inputArray.filter(char => char != " ");
     const charCodeA = "a".charCodeAt(0);
@@ -14,6 +17,7 @@ const polybiusModule = (function () {
       const encodedArray = inputArray.map(char => {
         const currentCharCode = char.charCodeAt(0);
 
+        // maintains spaces in the message
         if (currentCharCode < charCodeA || currentCharCode > "z".charCodeAt(0)) {
           return char;
         }
@@ -46,6 +50,8 @@ const polybiusModule = (function () {
     } else {
       let currentInputCoordinates = "";
       const decodedInput = inputArray.reduce((acc, char) => {
+
+        // maintains spaces in the message
         if (char === " ") {
           acc += char;
           return acc;
@@ -57,6 +63,7 @@ const polybiusModule = (function () {
           return acc;
         } 
 
+        // when decoding, translates 42 to (i/j)
         if(currentInputCoordinates === "42") {
           currentInputCoordinates = "";
           return acc + "(i/j)";

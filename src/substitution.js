@@ -5,6 +5,8 @@
 
 const substitutionModule = (function () {
   function substitution(input, alphabet, encode = true) {
+
+    // returns false if the given alphabet isn't exactly 26 characters long
     if(!alphabet || alphabet.length != 26) {
       return false;
     } 
@@ -12,7 +14,9 @@ const substitutionModule = (function () {
     const alphabetArray = alphabet.split("");
     const sortedAlphabetArray = alphabetArray.sort();
 
+    // returns false if there are any duplicate characters in the given alphabet
     let isAlphabetUnique = true;
+
     sortedAlphabetArray.forEach((char, index) => {
       if (index < sortedAlphabetArray.length - 1) {
         const nextChar = sortedAlphabetArray[index + 1];
@@ -26,12 +30,15 @@ const substitutionModule = (function () {
       return false;
     }
 
+    // will ignore capital letters
     const lowerCaseInput = input.toLowerCase();
+
     const inputArray = lowerCaseInput.split("");
     const charCodeA = "a".charCodeAt(0);
 
     if (encode) {
       const encodedArray = inputArray.map(char => {
+        // maintains spaces in the message
         if(char === " ") {
           return char;
         }
@@ -42,6 +49,7 @@ const substitutionModule = (function () {
     }
 
     const decodedArray = inputArray.map(char => {
+      // maintains spaces in the message
       if(char === " ") {
         return char;
       }
